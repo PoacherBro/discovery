@@ -1,13 +1,13 @@
 # Go parameters
 GOCMD=GO111MODULE=on CGO_ENABLED=0 go
-GOBUILD=$(GOCMD) build
+GOBUILD=$(GOCMD) build -mod=vendor
 GOTEST=$(GOCMD) test
 
 all: test build
 build:
 	rm -rf dist/
 	mkdir -p dist/conf
-	cp cmd/discovery/discovery-example.toml dist/conf/discovery.toml
+	cp cmd/discovery/discovery.toml dist/conf/discovery.toml
 	$(GOBUILD) -o dist/bin/discovery cmd/discovery/main.go
 
 test:
